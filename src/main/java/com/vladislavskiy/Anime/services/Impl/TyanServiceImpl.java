@@ -1,5 +1,7 @@
 package com.vladislavskiy.Anime.services.Impl;
 
+import com.vladislavskiy.Anime.dto.TyanCredentialsDto;
+import com.vladislavskiy.Anime.models.Tyan;
 import com.vladislavskiy.Anime.services.TyanService;
 import com.vladislavskiy.Anime.utils.TyanUtill;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 @Service
 public class TyanServiceImpl implements TyanService {
-    private TyanUtill tyanUtill;
+    final private TyanUtill tyanUtill;
 
     public TyanServiceImpl(TyanUtill tyanUtill) {
         this.tyanUtill = tyanUtill;
@@ -17,5 +19,15 @@ public class TyanServiceImpl implements TyanService {
     @Override
     public ResponseEntity getAllTyans() throws SQLException {
         return tyanUtill.getAllTyans();
+    }
+
+    @Override
+    public ResponseEntity getTyanById(Integer id) {
+        return tyanUtill.getTyanById(id);
+    }
+
+    @Override
+    public ResponseEntity addTyanByCredentials(TyanCredentialsDto tyanCredentialsDto) {
+        return tyanUtill.saveTyan( new Tyan(tyanCredentialsDto.id(),tyanCredentialsDto.name(),tyanCredentialsDto.surname(),tyanUtill.countTyanIQ(tyanCredentialsDto)));
     }
 }

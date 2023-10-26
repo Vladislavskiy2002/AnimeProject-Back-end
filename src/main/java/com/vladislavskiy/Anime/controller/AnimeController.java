@@ -1,22 +1,31 @@
 package com.vladislavskiy.Anime.controller;
 
 
+import com.vladislavskiy.Anime.dto.TyanCredentialsDto;
 import com.vladislavskiy.Anime.repositories.TyanRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.sql.*;
 
-@RestController
+@RestController("/anime")
 public class AnimeController {
-    TyanRepository repository;
+    final private TyanRepository repository;
 
     public AnimeController(TyanRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/tyan")
     public ResponseEntity getAllTyan() throws SQLException {
         return repository.getAllTyans();
+    }
+    @GetMapping("/tyan/{id}")
+    public ResponseEntity getAllTyan(@PathVariable Integer id) throws SQLException {
+        return repository.getTyanById(id);
+    }
+    @PostMapping("/tyan")
+    public ResponseEntity addNewTyan(@RequestBody TyanCredentialsDto tyanCredentialsDto) throws SQLException {
+        return repository.addTyanByCredentials(tyanCredentialsDto);
     }
 }

@@ -1,5 +1,6 @@
 package com.vladislavskiy.Anime.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,4 +18,5 @@ public class Tyan {
     private Integer id;
     private String name;
     private String surname;
+    private Integer IQ;
 }
