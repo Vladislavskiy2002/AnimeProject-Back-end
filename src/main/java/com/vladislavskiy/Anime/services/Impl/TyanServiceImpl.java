@@ -28,6 +28,12 @@ public class TyanServiceImpl implements TyanService {
 
     @Override
     public ResponseEntity addTyanByCredentials(TyanCredentialsDto tyanCredentialsDto) {
-        return tyanUtill.saveTyan( new Tyan(tyanCredentialsDto.id(),tyanCredentialsDto.name(),tyanCredentialsDto.surname(),tyanUtill.countTyanIQ(tyanCredentialsDto)));
+        return tyanUtill.saveTyan( new Tyan(tyanCredentialsDto.id(),tyanCredentialsDto.name(),tyanCredentialsDto.surname(),
+                tyanUtill.countTyanIQ(tyanCredentialsDto)));
+    }
+
+    @Override
+    public ResponseEntity updateTyanByCredentials(TyanCredentialsDto tyanCredentialsDto) {
+        return tyanUtill.updateTyanByCredentials(tyanCredentialsDto);
     }
 }

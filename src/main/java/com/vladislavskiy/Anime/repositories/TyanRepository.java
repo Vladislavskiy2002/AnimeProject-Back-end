@@ -11,4 +11,6 @@ public interface TyanRepository {
     ResponseEntity getTyanById(Integer id);
 
     ResponseEntity addTyanByCredentials(TyanCredentialsDto tyanCredentialsDto);
+
+    ResponseEntity updateTyanByCredentials(TyanCredentialsDto tyanCredentialsDto);
 }

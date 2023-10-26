@@ -25,6 +25,7 @@ public class TyanUtill {
         this.dataSource = dataSource;
         this.con = dataSource.getConnection();
     }
+
     public ResponseEntity getAllTyans() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement("SELECT * from tyans")) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -43,6 +44,7 @@ public class TyanUtill {
             throw new RuntimeException(e);
         }
     }
+
     public List<Tyan> getTyans(ResultSet resultSet) throws SQLException {
         List<Tyan> tyans = new ArrayList<>();
         while (resultSet.next()) {
@@ -56,19 +58,34 @@ public class TyanUtill {
         return tyans;
     }
 
-        public Integer countTyanIQ(TyanCredentialsDto tyanCredentialsDto) {
-        log.info( "COUNT: " + (tyanCredentialsDto.id() + tyanCredentialsDto.name().length() + tyanCredentialsDto.surname().length()));
+    public Integer countTyanIQ(TyanCredentialsDto tyanCredentialsDto) {
+        log.info("COUNT: " + (tyanCredentialsDto.id() + tyanCredentialsDto.name().length() + tyanCredentialsDto.surname().length()));
         return tyanCredentialsDto.id() + tyanCredentialsDto.name().length() + tyanCredentialsDto.surname().length();
     }
+
     public ResponseEntity saveTyan(Tyan tyan) {
         try (PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO tyans VALUES (?,?,?,?)")) {
-            preparedStatement.setInt(1,tyan.getId());
-            preparedStatement.setString(2,tyan.getName());
-            preparedStatement.setString(3,tyan.getSurname());
-            preparedStatement.setInt(4,tyan.getIQ());
+            preparedStatement.setInt(1, tyan.getId());
+            preparedStatement.setString(2, tyan.getName());
+            preparedStatement.setString(3, tyan.getSurname());
+            preparedStatement.setInt(4, tyan.getIQ());
             int i = preparedStatement.executeUpdate();
-            if(i>0)
+            if (i > 0)
                 return ResponseEntity.ok(tyan);
+            else return (ResponseEntity) ResponseEntity.noContent();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ResponseEntity updateTyanByCredentials(TyanCredentialsDto tyanCredentialsDto) {
+        try (PreparedStatement preparedStatement = con.prepareStatement("update tyans set name = ?, surname = ? where id = ?")) {
+            preparedStatement.setString(1, tyanCredentialsDto.name());
+            preparedStatement.setString(2, tyanCredentialsDto.surname());
+            preparedStatement.setInt(3, tyanCredentialsDto.id());
+            int i = preparedStatement.executeUpdate();
+            if (i > 0)
+                return ResponseEntity.ok(tyanCredentialsDto);
             else return (ResponseEntity) ResponseEntity.noContent();
         } catch (SQLException e) {
             throw new RuntimeException(e);

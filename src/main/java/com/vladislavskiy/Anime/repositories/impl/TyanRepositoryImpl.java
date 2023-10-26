@@ -28,4 +28,9 @@ public class TyanRepositoryImpl implements TyanRepository {
     public ResponseEntity addTyanByCredentials(TyanCredentialsDto tyanCredentialsDto) {
         return tyanService.addTyanByCredentials(tyanCredentialsDto);
     }
+
+    @Override
+    public ResponseEntity updateTyanByCredentials(TyanCredentialsDto tyanCredentialsDto) {
+        return tyanService.updateTyanByCredentials(tyanCredentialsDto);
+    }
 }

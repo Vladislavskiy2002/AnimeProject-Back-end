@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
 
-@RestController("/anime")
+@RestController()
 public class AnimeController {
     final private TyanRepository repository;
 
@@ -27,5 +27,9 @@ public class AnimeController {
     @PostMapping("/tyan")
     public ResponseEntity addNewTyan(@RequestBody TyanCredentialsDto tyanCredentialsDto) throws SQLException {
         return repository.addTyanByCredentials(tyanCredentialsDto);
+    }
+    @PutMapping("/tyan")
+    public ResponseEntity updateTyan(@RequestBody TyanCredentialsDto tyanCredentialsDto) throws SQLException {
+        return repository.updateTyanByCredentials(tyanCredentialsDto);
     }
 }
