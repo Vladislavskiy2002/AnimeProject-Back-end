@@ -6,9 +6,11 @@ import com.vladislavskiy.Anime.services.TyanService;
 import com.vladislavskiy.Anime.utils.TyanUtill;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 @Service
+@Transactional
 public class TyanServiceImpl implements TyanService {
     final private TyanUtill tyanUtill;
 
