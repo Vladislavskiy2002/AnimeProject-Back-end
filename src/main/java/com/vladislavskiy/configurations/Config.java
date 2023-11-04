@@ -13,7 +13,7 @@ import java.util.Properties;
 @Configuration
 public class Config {
     @SneakyThrows
-    @Bean("config")
+    @Bean
     public DataSource dataSource() {
         try (BufferedReader reader = Files.newBufferedReader(Path.of("D:/IDEA2022/JAVA_PROJECTS/Anime/Anime/src/main/resources/application.properties"))) {
             Properties props = new Properties();
