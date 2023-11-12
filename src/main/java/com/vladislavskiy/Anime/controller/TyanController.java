@@ -9,16 +9,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
 
-@RestController()
-public class AnimeController {
+@RestController
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+public class TyanController {
     final private TyanRepository repository;
 
-    public AnimeController(TyanRepository repository) {
+    public TyanController(TyanRepository repository) {
         this.repository = repository;
     }
     @GetMapping("/go")
     public String getAllgoTyan() throws SQLException {
         return "repository.getAllTyans()";
+    }
+    @GetMapping("/go/{username}")
+    public String getAllgoTyan(@PathVariable String username) throws SQLException {
+        return "repository.getAllTyans()" + username;
     }
     @PostMapping("/go")
     public String addAllgoTyan() throws SQLException {

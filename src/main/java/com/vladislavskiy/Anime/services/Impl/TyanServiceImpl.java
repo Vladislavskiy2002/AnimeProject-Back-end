@@ -13,16 +13,13 @@ import java.sql.SQLException;
 @Transactional
 public class TyanServiceImpl implements TyanService {
     final private TyanUtill tyanUtill;
-
     public TyanServiceImpl(TyanUtill tyanUtill) {
         this.tyanUtill = tyanUtill;
     }
-
     @Override
     public ResponseEntity getAllTyans() throws SQLException {
         return tyanUtill.getAllTyans();
     }
-
     @Override
     public ResponseEntity getTyanById(Integer id) {
         return tyanUtill.getTyanById(id);
@@ -33,7 +30,6 @@ public class TyanServiceImpl implements TyanService {
         return tyanUtill.saveTyan( new Tyan(tyanCredentialsDto.id(),tyanCredentialsDto.name(),tyanCredentialsDto.surname(),
                 tyanUtill.countTyanIQ(tyanCredentialsDto)));
     }
-
     @Override
     public ResponseEntity updateTyanByCredentials(TyanCredentialsDto tyanCredentialsDto) {
         return tyanUtill.updateTyanByCredentials(tyanCredentialsDto);
