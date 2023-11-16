@@ -19,7 +19,6 @@ public class Film {
     private String name;
     private Double rating;
     private String description;
-    @JsonIgnore
     @Transient
     private String contentURL;         // Local url on local disk
 }
