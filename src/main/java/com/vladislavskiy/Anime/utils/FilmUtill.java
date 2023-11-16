@@ -51,16 +51,18 @@ public class FilmUtill {
             film.setName(resultSet.getString("name"));
             film.setRating(resultSet.getDouble("rating"));
             film.setDescription(resultSet.getString("description"));
+            film.setContentURL(resultSet.getString("video_url"));
             films.add(film);
         }
         return films;
     }
 
     public ResponseEntity saveFilm(Film film) {
-        try (PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO films (name, rating, description) VALUES (?,?,?)")) {
+        try (PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO films (name, rating, description,video_url) VALUES (?,?,?,?)")) {
             preparedStatement.setString(1, film.getName());
             preparedStatement.setDouble(2, film.getRating());
             preparedStatement.setString(3, film.getDescription());
+            preparedStatement.setString(4, film.getContentURL());
             int i = preparedStatement.executeUpdate();
             if (i > 0)
                 return ResponseEntity.ok(film);
