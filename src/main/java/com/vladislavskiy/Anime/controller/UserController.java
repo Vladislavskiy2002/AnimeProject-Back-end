@@ -1,5 +1,6 @@
 package com.vladislavskiy.Anime.controller;
 
+import com.vladislavskiy.Anime.dto.UsernameRequest;
 import com.vladislavskiy.Anime.entity.AuthRequest;
 import com.vladislavskiy.Anime.entity.UserInfo;
 import com.vladislavskiy.Anime.services.Impl.JwtService;
@@ -31,7 +32,10 @@ public class UserController {
     public String welcome() {
         return "Welcome this endpoint is not secure";
     }
-
+    @PostMapping("/isUserExistByName")
+    public String isUserWithNameExist(@RequestBody UsernameRequest request) {
+        return service.checkUserOnExistByUsername(request.username()).toString();
+    }
     @PostMapping("/addNewUser")
     public String addNewUser(@RequestBody UserInfo userInfo) {
         return service.addUser(userInfo);
