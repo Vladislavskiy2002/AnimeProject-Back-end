@@ -28,7 +28,7 @@ public class FilmServiceImpl implements FilmService {
     }
     @Override
     public ResponseEntity addFilmByCredentials(FilmCredentialsDto filmCredentialsDto) {
-        return filmUtill.saveFilm(new Film(filmCredentialsDto.id(),filmCredentialsDto.name(),filmCredentialsDto.rating(),filmCredentialsDto.description(),"somePath"));
+        return filmUtill.saveFilm(new Film(filmCredentialsDto.id(),filmCredentialsDto.name(),filmCredentialsDto.rating(),filmCredentialsDto.description(),filmCredentialsDto.filename()));
     }
     @Override
     public ResponseEntity updateFilmByCredentials(FilmCredentialsDto filmCredentialsDto) {
