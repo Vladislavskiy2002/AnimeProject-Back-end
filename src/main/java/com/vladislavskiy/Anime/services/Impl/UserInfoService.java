@@ -3,6 +3,7 @@ package com.vladislavskiy.Anime.services.Impl;
 
 import com.vladislavskiy.Anime.entity.UserInfo;
 import com.vladislavskiy.Anime.repositories.UserInfoRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserInfoService implements UserDetailsService {
     @Autowired
     private UserInfoRepository repository;
@@ -34,6 +36,11 @@ public class UserInfoService implements UserDetailsService {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         repository.save(userInfo);
         return "User Added Successfully";
+    }
+    public Boolean checkUserOnExistByUsername(String username) {
+        log.info("USERNAME "+username);
+        Optional<UserInfo> userDetail = repository.findByName(username);
+        return userDetail.isPresent();
     }
 }
 
