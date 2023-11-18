@@ -1,13 +1,15 @@
 package com.vladislavskiy.Anime.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "films")
+@Entity(name = "films")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,11 +17,11 @@ import lombok.Setter;
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
     private Double rating;
     private String description;
-    @Transient
     private String contentURL;         // Local url on local disk
+    private String picture;         // Local url on local disk
 }
 
