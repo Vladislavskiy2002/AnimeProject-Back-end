@@ -1,6 +1,6 @@
 package com.vladislavskiy.Anime.repositories;
 
-import com.vladislavskiy.Anime.entity.UserInfo;
+import com.vladislavskiy.Anime.models.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
