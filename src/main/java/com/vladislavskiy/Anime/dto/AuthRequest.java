@@ -1,4 +1,4 @@
-package com.vladislavskiy.Anime.entity;
+package com.vladislavskiy.Anime.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
