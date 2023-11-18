@@ -1,19 +1,21 @@
 package com.vladislavskiy.Anime.services;
 
 import com.vladislavskiy.Anime.dto.FilmCredentialsDto;
-import com.vladislavskiy.Anime.dto.TyanCredentialsDto;
-import org.springframework.http.ResponseEntity;
+import com.vladislavskiy.Anime.models.Film;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.SQLException;
+import java.util.List;
 
 public interface FilmService {
-    ResponseEntity getAllFilms() throws SQLException;
+    List<Film> getAllFilms();
 
-    ResponseEntity getFilmById(Integer id);
+    Film getFilmById(Long id);
 
-    ResponseEntity addFilmByCredentials(FilmCredentialsDto filmCredentialsDto);
+    Film addFilmByCredentials(FilmCredentialsDto filmCredentialsDto);
 
-    ResponseEntity updateFilmByCredentials(FilmCredentialsDto filmCredentialsDto);
+    String uploadVideo(MultipartFile file);
 
-    ResponseEntity deleteFilmById(Integer id);
+    Film updateFilmByCredentials(FilmCredentialsDto filmCredentialsDto);
+
+    Film deleteFilmById(Long id);
 }
