@@ -1,6 +1,6 @@
 package com.vladislavskiy.Anime.services.Impl;
 
-import com.vladislavskiy.Anime.entity.UserInfo;
+import com.vladislavskiy.Anime.models.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,9 +19,7 @@ public class UserInfoDetails implements UserDetails {
     public UserInfoDetails(UserInfo userInfo) {
         name = userInfo.getName();
         password = userInfo.getPassword();
-        authorities = Arrays.stream(userInfo.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        authorities = Arrays.stream(userInfo.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     @Override
