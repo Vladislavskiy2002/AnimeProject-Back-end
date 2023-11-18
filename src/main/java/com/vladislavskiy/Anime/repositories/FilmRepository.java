@@ -1,19 +1,18 @@
 package com.vladislavskiy.Anime.repositories;
 
-import com.vladislavskiy.Anime.dto.FilmCredentialsDto;
-import com.vladislavskiy.Anime.dto.TyanCredentialsDto;
-import org.springframework.http.ResponseEntity;
+import com.vladislavskiy.Anime.models.Film;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import java.sql.SQLException;
+import java.util.List;
 
-public interface FilmRepository {
-    ResponseEntity getAllFilms() throws SQLException;
+public interface FilmRepository extends JpaRepository<Film, Long> {
+    @Query("select f from films f")
+    List<Film> findAll();
 
-    ResponseEntity getFilmById(Integer id);
-
-    ResponseEntity addFilmByCredentials(FilmCredentialsDto filmCredentialsDto);
-
-    ResponseEntity updateFilmByCredentials(FilmCredentialsDto filmCredentialsDto);
-
-    ResponseEntity deleteFilmById(Integer id);
+    @Modifying
+    @Query("update films f set f.name = :name, f.rating = :rating, f.description = :description where f.id = :id")
+    Film update(@Param("id") Long id, @Param("name") String name, @Param("rating") Double rating, @Param("description") String description);
 }
