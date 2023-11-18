@@ -16,9 +16,9 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping("/isUserExistByName")
-    public String isUserWithNameExist(@RequestBody UsernameRequest request) {
-        return service.checkUserOnExistByUsername(request.username()).toString();
+    @GetMapping("/isUserExist/{username}")
+    public String isUserWithNameExist(@PathVariable String username) {
+        return service.checkUserOnExistByUsername(username).toString();
     }
 
     @PostMapping("/addNewUser")
