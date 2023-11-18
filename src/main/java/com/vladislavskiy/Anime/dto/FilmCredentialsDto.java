@@ -1,7 +1,6 @@
 package com.vladislavskiy.Anime.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
-public record FilmCredentialsDto(Integer id, String name, Double rating, String description, String filename
+public record FilmCredentialsDto(Long id, String name, Double rating, String description, String filename,
+                                 String picture
 ) {
 }
