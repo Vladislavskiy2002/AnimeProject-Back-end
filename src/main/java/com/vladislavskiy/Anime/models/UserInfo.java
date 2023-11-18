@@ -1,4 +1,4 @@
-package com.vladislavskiy.Anime.entity;
+package com.vladislavskiy.Anime.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
