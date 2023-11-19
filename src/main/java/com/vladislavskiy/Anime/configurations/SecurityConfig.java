@@ -36,7 +36,7 @@ public class SecurityConfig {
     // Configuring HttpSecurity
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable().authorizeHttpRequests().requestMatchers("/video", "/auth/isUserExist/**", "/auth/welcome", "/auth/addNewUser", "/token/**", "/film/**").permitAll().and().authorizeHttpRequests().requestMatchers("/auth/user/**").authenticated().and().authorizeHttpRequests().requestMatchers("/auth/admin/**").authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authenticationProvider(authenticationProvider()).addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class).build();
+        return http.csrf().disable().authorizeHttpRequests().requestMatchers("/comment/**","/video", "/auth/isUserExist/**", "/auth/welcome", "/auth/addNewUser", "/token/**", "/film/**").permitAll().and().authorizeHttpRequests().requestMatchers("/auth/user/**").authenticated().and().authorizeHttpRequests().requestMatchers("/auth/admin/**").authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authenticationProvider(authenticationProvider()).addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class).build();
     }
 
     // Password Encoding
